@@ -24,7 +24,7 @@ export default class LoginForm extends Component {
     try {
       await userUtils.login(this.state)
       handleSignupOrLogin()
-      history.push('/')
+      history.push('/home')
     } catch (err) {
       console.log(err)
       updateMsg(err.message)

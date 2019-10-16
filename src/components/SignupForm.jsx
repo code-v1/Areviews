@@ -36,7 +36,7 @@ export default class SignupForm extends Component {
     try {
       await userUtils.signup(this.state)
       handleSignupOrLogin()
-      history.push('/')
+      history.push('/home')
     } catch (err) {
       updateMsg(err.message)
     }

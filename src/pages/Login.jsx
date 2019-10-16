@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import userUtils from '../utils/user'
 import LoginForm from '../components/LoginForm'
 
 export default class Login extends Component {

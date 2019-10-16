@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Nav(props) {
   const { user, handleLogout } = props
@@ -7,33 +8,23 @@ export default function Nav(props) {
       <h2>W I L C O</h2>
       <nav>
         {user && (
-          <button
-            className='zi-btn mini success'
-            onClick={handleLogout}
-            to='logout'
-          >
-            Logout
-          </button>
+          <Link to='/'>
+            <button
+              className='zi-btn mini success'
+              onClick={handleLogout}
+              to='logout'
+            >
+              Logout
+            </button>
+          </Link>
         )}
       </nav>
       <style>{`
           header { 
             display: flex;
             align-items: center;
+            justify-content: space-between;
            } 
-
-           header h1 {
-             justify-content: flex-start;
-           }
-
-            nav {
-              display: flex;
-           }
-
-           nav button {
-             justify-content: flex-end;
-           }
-        
         `}</style>
     </header>
   )

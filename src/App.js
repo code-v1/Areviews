@@ -3,7 +3,9 @@ import { Route, Switch } from 'react-router-dom'
 import Nav from './components/Nav'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
+import Landing from './pages/Landing'
 import Home from './pages/Home'
+import PrivateRoute from './components/PrivateRoute'
 import userUtils from './utils/user'
 import '@zeit-ui/style'
 
@@ -31,13 +33,18 @@ class App extends Component {
         <main className='zi-main'>
           <section className='zi-layout'>
             <Switch>
+              <PrivateRoute
+                user={this.state.user}
+                component={Home}
+                path='/home'
+              />
               <Route
                 exact
                 path='/'
-                render={() => (
-                  <Home
+                render={({ history }) => (
+                  <Landing
                     handleSignupOrLogin={this.handleSignupOrLogin}
-                    user={this.state.user}
+                    history={history}
                   />
                 )}
               />
