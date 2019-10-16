@@ -1,13 +1,11 @@
 const mongoose = require('mongoose')
 
-const uri =
-  'mongodb+srv://sargtier1:123455687@cluster0-6ujmp.mongodb.net/test?retryWrites=true&w=majority'
-
-mongoose.connect(uri, {
+mongoose.connect(process.env.ATLAS_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true
 })
+
 
 var db = mongoose.connection
 

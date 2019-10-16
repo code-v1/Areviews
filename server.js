@@ -1,32 +1,27 @@
 const express = require('express')
-const cors = require('cors')
 const morgan = require('morgan')
+const path = require('path')
+const favicon = require('serve-favicon')
 
-const userRouter = require('./routes/users')
-const animeRouter = require('./routes/animes')
-const commentRouter = require('./routes/comments')
-
+require('dotenv').config()
 require('./utils/mongoose')
 
 const port = process.env.PORT || 5001
-
 const app = express()
 
-app.use(morgan('combined'))
-app.use(express.json())
-app.use(cors())
+app.use(morgan('dev'))
+app.use(express.json({ extended: false }))
+// extended false lets us get data from req.body
 
-// Router mounts
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
+app.use(express.static(path.join(__dirname, 'build')))
 
-/*
-app.use('/users', userRouter)
-app.use('/animes', animeRouter)
-app.use('/comments', commentRouter)
-*/
+app.use('/api/users', require('./routes/api/users'))
 
-// Production catch all route to handle unexpected requests
-app.get('/*', (req, res) => {
+app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
-app.listen(() => console.log(`> Server is listening on port ${port}`))
+app.listen(port, function() {
+  console.log(`Express app running on port ${port}`)
+})
