@@ -7,10 +7,10 @@ function createJWT(user) {
 }
 
 async function login(req, res) {
+  let user = await User.findOne({ email: req.body.email })
   try {
-    const user = await User.findOne({ email: req.body.email })
     if (!user) return res.status(401).json({ err: 'bad credentials' })
-    user.comparePassword(req.body.pw, (err, isMatch) => {
+    user.comparePassword(req.body.password, (err, isMatch) => {
       if (isMatch) {
         const token = createJWT(user)
         res.json({ token })
@@ -29,7 +29,6 @@ async function signup(req, res) {
     email: req.body.email,
     password: req.body.password
   }
-
   const user = new User(parsedUser)
   try {
     await user.save()

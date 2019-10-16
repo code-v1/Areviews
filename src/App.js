@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import Nav from './components/Nav'
 import Signup from './pages/Signup'
+import Login from './pages/Login'
 import Home from './pages/Home'
 import userUtils from './utils/user'
 import '@zeit-ui/style'
@@ -26,12 +27,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <header className='zi-card'>
-          <h1>W I L C O</h1>
-          <nav>
-            <Link to='signup'>Signup</Link>
-          </nav>
-        </header>
+        <Nav user={this.state.user} handleLogout={this.handleLogout} />
         <main className='zi-main'>
           <section className='zi-layout'>
             <Switch>
@@ -55,22 +51,19 @@ class App extends Component {
                   />
                 )}
               />
+              <Route
+                exact
+                path='/login'
+                render={({ history }) => (
+                  <Login
+                    handleSignupOrLogin={this.handleSignupOrLogin}
+                    history={history}
+                  />
+                )}
+              />
             </Switch>
           </section>
         </main>
-        <style>{`
-          header { 
-            display: flex;
-           } 
-
-           header h1 {
-             justify-content: flex-start;
-           }
-
-           header nav {
-             justify-content: flex-end;
-           }
-        `}</style>
       </>
     )
   }

@@ -4,12 +4,21 @@ import axios from 'axios'
 function signup(user) {
   return axios
     .post('/api/users/signup', user)
-    .then(res => {
-      let token = res.data.token
-      tokenUtils.setToken(token)
-      // else return new Error('Email already taken')
+    .then(res => tokenUtils.setToken(res.data.token))
+    .catch(err => {
+      console.log(err)
+      new Error('Email already taken')
     })
-    .catch(err => console.log(err))
+}
+
+function login(creds) {
+  return axios
+    .post('/api/users/login', creds)
+    .then(res => tokenUtils.setToken(res.data.token))
+    .catch(err => {
+      console.log(err)
+      new Error('Email already taken')
+    })
 }
 
 function getUser() {
@@ -20,19 +29,6 @@ function logout() {
   tokenUtils.removeToken()
 }
 
-function login(creds) {
-  return fetch('/api/users/login', {
-    method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
-    body: JSON.stringify(creds)
-  })
-    .then(res => {
-      // Valid login if we have a status of 2xx (res.ok)
-      if (res.ok) return res.json()
-      throw new Error('Bad Credentials!')
-    })
-    .then(({ token }) => tokenUtils.setToken(token))
-}
 export default {
   login,
   signup,
