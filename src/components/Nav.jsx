@@ -14,6 +14,7 @@ export default function Nav(props) {
               onClick={handleLogout}
               to='logout'
             >
+              
               Logout
             </button>
           </Link>
