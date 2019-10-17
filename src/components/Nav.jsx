@@ -10,7 +10,7 @@ export default function Nav(props) {
         {user && (
           <Link to='/'>
             <button
-              className='zi-btn mini success'
+              className='zi-btn auto success'
               onClick={handleLogout}
               to='logout'
             >
