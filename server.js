@@ -10,13 +10,14 @@ const port = process.env.PORT || 5001
 const app = express()
 
 app.use(morgan('dev'))
-app.use(express.json({ extended: false }))
+app.use(express.json())
 // extended false lets us get data from req.body
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')))
 app.use(express.static(path.join(__dirname, 'build')))
 
 app.use('/api/users', require('./routes/api/users'))
+app.use('/api/games', require('./routes/api/games'))
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))

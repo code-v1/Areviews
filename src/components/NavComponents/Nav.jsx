@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Brand from './Brand'
 import Menu from './Menu'
 import { Link } from 'react-router-dom'
@@ -26,6 +26,16 @@ export default function Nav({ user, handleLogout }) {
             display: flex;
             align-items: center;
             justify-content: space-between;
+          }
+
+          a {
+            color: black;
+            height: 100%;
+          }
+  
+          a:hover {
+            text-decoration: none;
+            color: #09d3ac;
           }
         `}</style>
     </header>

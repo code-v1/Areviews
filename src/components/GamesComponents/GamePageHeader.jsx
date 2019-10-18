@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import tokenUtils from '../../utils/token'
+import DB from '../../utils/db'
 
 export default class GamePageHeader extends Component {
   constructor(props) {
@@ -12,10 +14,16 @@ export default class GamePageHeader extends Component {
     this.setState({ showMsg: false })
   }
 
+  handleClick = game => {
+    DB.addGame(game).then(res => console.log(res.json))
+  }
+
   render() {
     const { game, views } = this.props
     const { showMsg } = this.state
-    console.log(showMsg)
+
+    console.log(game)
+    console.log(tokenUtils.getToken())
     return (
       <div>
         <>
@@ -30,7 +38,12 @@ export default class GamePageHeader extends Component {
                 <p>Total views: {views}</p>
               </div>
 
-              <button className='zi-btn primary ghost '>Save</button>
+              <button
+                onClick={() => this.handleClick(game)}
+                className='zi-btn primary ghost '
+              >
+                Save
+              </button>
             </div>
             <div className='zi-more' />
             <div className='zi-fieldset-content'>

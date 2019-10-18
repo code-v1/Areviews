@@ -14,18 +14,6 @@ export default function Brand(props) {
           <h2>{brand}</h2>
         </NavLink>
       )}
-      <style jsx>{`
-        a {
-          color: black;
-          height: 100%;
-        }
-
-        a:hover {
-          text-decoration: none;
-          color: #09d3ac;
-          background: lightgrey;
-        }
-      `}</style>
     </>
   )
 }

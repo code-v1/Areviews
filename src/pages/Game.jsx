@@ -43,13 +43,18 @@ export default class Game extends Component {
     console.log(game, streams)
     return (
       <>
-        {game && (
+        {!game ? (
+          <>
+            <h1>Something seems to be wrong</h1>
+          </>
+        ) : (
           <>
             <GamePageHeader game={game} views={views} />
           </>
         )}
         <br />
         <StreamContainer streams={streams} />
+        )}
       </>
     )
   }
