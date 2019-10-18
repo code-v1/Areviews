@@ -17,11 +17,13 @@ export default function Brand(props) {
       <style jsx>{`
         a {
           color: black;
+          height: 100%;
         }
 
         a:hover {
           text-decoration: none;
           color: #09d3ac;
+          background: lightgrey;
         }
       `}</style>
     </>

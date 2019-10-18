@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import Landing from './pages/Landing'
 import Home from './pages/Home'
 import TopGames from './pages/TopGames'
+import Game from './pages/Game'
 import PrivateRoute from './components/PrivateRoute'
 import userUtils from './utils/user'
 import '@zeit-ui/style'
@@ -43,6 +44,11 @@ class App extends Component {
                 user={this.state.user}
                 component={TopGames}
                 path='/top-games'
+              />
+              <PrivateRoute
+                user={this.state.user}
+                component={Game}
+                path='/game/:id'
               />
               <Route
                 exact

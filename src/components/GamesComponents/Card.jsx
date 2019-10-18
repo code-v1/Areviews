@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Card({ game }) {
   return (
@@ -6,7 +7,16 @@ export default function Card({ game }) {
       <img src={game.box_art_url} alt='' />
       <div className='zi-caption'>
         <h3>{game.name}</h3>
-        <button className='zi-btn auto primary'>see more details</button>
+        <Link
+          to={{
+            pathname: `/game/${game.name}`,
+            state: {
+              game: game
+            }
+          }}
+        >
+          <button className='zi-btn auto primary'>see more details</button>
+        </Link>
       </div>
       <style>{`
         .game-card{

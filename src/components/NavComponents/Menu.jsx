@@ -13,8 +13,6 @@ export default function Menu() {
       <p>
         <NavLink to='/profile'>Profile</NavLink>
       </p>
-
-      <style jsx>{``}</style>
     </>
   )
 }
