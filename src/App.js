@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Nav from './components/Nav'
+import Navbar from './components/NavComponents/Nav'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Landing from './pages/Landing'
@@ -30,7 +30,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Nav user={this.state.user} handleLogout={this.handleLogout} />
+        <Navbar user={this.state.user} handleLogout={this.handleLogout} />
         <main className='zi-main'>
           <section className='zi-layout'>
             <Switch>

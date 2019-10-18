@@ -6,7 +6,7 @@ export default function Landing() {
     <div className='zi-fieldset'>
       <div className='zi-fieldset-content'>
         <h1>Welcome to Areviews!</h1>
-        <div className='zi-more' />
+        <hr />
         <p>
           Join to keep track of the hottest video games being played by the pros
           right now! See who has the biggest follow, live! Leave comments and

@@ -1,25 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-
-/*
-const [topGames, setTopGames] = useState([])
-useEffect(() => {
-  const fetchData = () => {
-    API.get('https://api.twitch.tv/helix/games/top/first?=5').then(res =>
-      setTopGames(res.json())
-    )
-
-    let dataArr = result.data.data
-    let finalArr = dataArr.map(data => {
-      let newUri = data.box_art_url
-        .replace('{width}', '300')
-        .replace('{height}', '300')
-      data.box_art_url = newUri
-    })
-  }
-  fetchData()
-})
-*/
 
 export default function Home(props) {
   return (
