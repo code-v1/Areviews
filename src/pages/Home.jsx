@@ -9,19 +9,20 @@ export default function Home(props) {
         <div className='zi-fieldset-content'>
           <h1>Welcome back, {props.user.username}!</h1>
           <p>
-            Click on one of the buttons below to navigate between pages. The nav
-            elements will be at the top of the screen on the other pages.
+            Welcome to Areviews! Start by browsing the top games on twitch. Once
+            you save a game you can begin to join the community by commenting on
+            your favorite games! Tops streams are a bonus too!
+            <div className='zi-more'></div>I will be adding direct links to
+            streams soon!
           </p>
         </div>
         <div className='zi-fieldset-footer'>
-          <p>Browse the most watched games on twitch</p>
+          <p> </p>
           <Link to='top-games'>
-            <button className='zi-btn mini auto primary'>Games</button>
+            <button className='zi-btn mini auto primary'>
+              Start browsing now!
+            </button>
           </Link>
-        </div>
-        <div className='zi-fieldset-footer'>
-          <p>See which streamers have the most active viewers</p>
-          <button className='zi-btn mini auto primary'>Streams</button>
         </div>
         <div className='zi-fieldset-footer'>
           <p>

@@ -12,7 +12,11 @@ export default function Card({ stream }) {
             <a href='#'>Show more</a>
           </>
         ) : (
-          <h3>{stream.title}</h3>
+          <>
+            <h3 style={{ color: 'black' }}>{stream.user_name}</h3>
+            <p>{stream.viewer_count} viewers</p>
+            <button className='zi-btn disabled'>Stream</button>
+          </>
         )}
       </div>
       <style>{`

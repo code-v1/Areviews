@@ -8,9 +8,6 @@ export default function Menu() {
         <NavLink to='/top-games'>Top Games</NavLink>
       </p>
       <p>
-        <NavLink to='/top-streams'>Top Streams</NavLink>
-      </p>
-      <p>
         <NavLink to='/profile'>Profile</NavLink>
       </p>
     </>
