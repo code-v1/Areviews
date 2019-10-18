@@ -15,7 +15,7 @@ export default function Card({ game }) {
             }
           }}
         >
-          <button className='zi-btn auto primary'>see more details</button>
+          <button className='zi-btn auto shadow'>see more details</button>
         </Link>
       </div>
       <style>{`
