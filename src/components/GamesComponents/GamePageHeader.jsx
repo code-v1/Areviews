@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import tokenUtils from '../../utils/token'
 import DB from '../../utils/db'
+import axios from 'axios'
 
 export default class GamePageHeader extends Component {
   constructor(props) {
@@ -15,15 +16,24 @@ export default class GamePageHeader extends Component {
   }
 
   handleClick = game => {
-    DB.addGame(game).then(res => console.log(res.json))
+    let token = tokenUtils.getToken()
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      }
+    }
+
+    return axios
+      .post('/api/games', game, config)
+      .then(res => console.log(res.json()))
+      .catch(err => console.log(err))
   }
 
   render() {
     const { game, views } = this.props
     const { showMsg } = this.state
-
-    console.log(game)
-    console.log(tokenUtils.getToken())
     return (
       <div>
         <>
@@ -37,7 +47,6 @@ export default class GamePageHeader extends Component {
                 <h1>Fortnite</h1>
                 <p>Total views: {views}</p>
               </div>
-
               <button
                 onClick={() => this.handleClick(game)}
                 className='zi-btn primary ghost '

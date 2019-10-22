@@ -2,7 +2,7 @@ import axios from 'axios'
 import tokenUtils from '../utils/token'
 
 const config = {
-  headers: { Authorization: 'bearer ' + tokenUtils.getToken() }
+  headers: { Authorization: `bearer ${tokenUtils.getToken()}` }
 }
 
 export default {

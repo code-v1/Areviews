@@ -40,7 +40,6 @@ export default class Game extends Component {
   render() {
     const { game } = this.props.location.state
     const { streams, views } = this.state
-    console.log(game, streams)
     return (
       <>
         {!game ? (
@@ -54,7 +53,6 @@ export default class Game extends Component {
         )}
         <br />
         <StreamContainer streams={streams} />
-        )}
       </>
     )
   }
