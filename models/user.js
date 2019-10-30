@@ -10,8 +10,8 @@ const userSchema = new Schema(
     email: { type: String, unique: true, unique: true },
     password: { type: String, required: true },
     avatar: { type: String },
-    favGames: { type: Schema.Types.ObjectId, ref: 'Game' },
-    comments: { type: Schema.Types.ObjectId, ref: 'Comment' }
+    favGames: [{ type: Schema.Types.ObjectId, ref: 'Game', default: null }],
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Comment', default: null }]
   },
   {
     timestamps: true

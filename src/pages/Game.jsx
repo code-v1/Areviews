@@ -39,6 +39,7 @@ export default class Game extends Component {
 
   render() {
     const { game } = this.props.location.state
+    const { user } = this.props
     const { streams, views } = this.state
     return (
       <>
@@ -48,7 +49,7 @@ export default class Game extends Component {
           </>
         ) : (
           <>
-            <GamePageHeader game={game} views={views} />
+            <GamePageHeader game={game} views={views} user={user} />
           </>
         )}
         <br />

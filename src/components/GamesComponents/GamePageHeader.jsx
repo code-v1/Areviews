@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import tokenUtils from '../../utils/token'
-import DB from '../../utils/db'
 import axios from 'axios'
 
 export default class GamePageHeader extends Component {
@@ -9,6 +8,10 @@ export default class GamePageHeader extends Component {
     this.state = {
       showMsg: true
     }
+  }
+
+  componentDidMount = () => {
+    
   }
 
   handleMsg = () => {
@@ -27,13 +30,14 @@ export default class GamePageHeader extends Component {
 
     return axios
       .post('/api/games', game, config)
-      .then(res => console.log(res.json()))
+      .then(res => console.log(res.json(res)))
       .catch(err => console.log(err))
   }
 
   render() {
-    const { game, views } = this.props
+    const { game, views, user } = this.props
     const { showMsg } = this.state
+    console.log(user)
     return (
       <div>
         <>
@@ -44,7 +48,7 @@ export default class GamePageHeader extends Component {
                 <img src={game.box_art_url} alt='' className='zi-avatar huge' />
               </div>
               <div className='zi-caption'>
-                <h1>Fortnite</h1>
+                <h1>{game.name}</h1>
                 <p>Total views: {views}</p>
               </div>
               <button

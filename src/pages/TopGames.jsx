@@ -19,8 +19,6 @@ export default function TopGames() {
     }
     getTopGames()
   })
-
-  console.log(games)
   return (
     <div>
       <h1>Top Games</h1>
