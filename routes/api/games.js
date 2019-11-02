@@ -8,7 +8,7 @@ function isAuthed(req, res, next) {
   return res.status(401).json({ msg: 'Unauthorized ' })
 }
 
-router.get('/')
+router.get('/', isAuthed, gamesCtrl.getGames)
 router.post('/', isAuthed, gamesCtrl.addGame)
 
 module.exports = router

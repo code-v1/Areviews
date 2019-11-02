@@ -1,12 +1,13 @@
-import axios from 'axios'
 import tokenUtils from '../utils/token'
 
-const config = {
-  headers: { Authorization: `bearer ${tokenUtils.getToken()}` }
-}
+let token = tokenUtils.getToken()
 
-export default {
-  addGame: function(game) {
-    return axios.post('/api/games', game, config)
+let config = {
+  headers: {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
   }
 }
+
+export default config

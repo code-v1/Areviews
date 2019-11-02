@@ -1,17 +1,34 @@
 import React, { Component } from 'react'
-import tokenUtils from '../../utils/token'
+import config from '../../utils/db'
 import axios from 'axios'
 
 export default class GamePageHeader extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showMsg: true
+      showMsg: true,
+      userGames: []
     }
   }
 
   componentDidMount = () => {
-    
+    return axios.get('/api/games', config).then(res => {
+      const { favGames } = res.data
+      let games = favGames.map(games => games.name)
+      this.setState({
+        userGames: games
+      })
+    })
+  }
+
+  componentDidUpdate = () => {
+    // return axios.get('/api/games', config).then(res => {
+    //   const { favGames } = res.data
+    //   let games = favGames.map(games => games.name)
+    //   this.setState({
+    //     userGames: games
+    //   })
+    // })
   }
 
   handleMsg = () => {
@@ -19,25 +36,24 @@ export default class GamePageHeader extends Component {
   }
 
   handleClick = game => {
-    let token = tokenUtils.getToken()
-    let config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
-    }
-
+    this.setState({
+      userGames: []
+    })
     return axios
       .post('/api/games', game, config)
-      .then(res => console.log(res.json(res)))
+      .then(res => {
+        const { favGames } = res.data
+        console.log(favGames)
+      })
       .catch(err => console.log(err))
   }
 
+  handleRemove = () => {}
+
   render() {
-    const { game, views, user } = this.props
-    const { showMsg } = this.state
-    console.log(user)
+    const { game, views } = this.props
+    const { showMsg, userGames } = this.state
+   
     return (
       <div>
         <>
@@ -51,12 +67,22 @@ export default class GamePageHeader extends Component {
                 <h1>{game.name}</h1>
                 <p>Total views: {views}</p>
               </div>
-              <button
-                onClick={() => this.handleClick(game)}
-                className='zi-btn primary ghost '
-              >
-                Save
-              </button>
+
+              {userGames && userGames.includes(game.name) ? (
+                <button
+                  onClick={() => this.handleRemove(game)}
+                  className='zi-btn primary ghost '
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  onClick={() => this.handleClick(game)}
+                  className='zi-btn primary ghost '
+                >
+                  Save
+                </button>
+              )}
             </div>
             <div className='zi-more' />
             <div className='zi-fieldset-content'>
