@@ -13,22 +13,13 @@ export default class GamePageHeader extends Component {
 
   componentDidMount = () => {
     return axios.get('/api/games', config).then(res => {
+      console.log(res)
       const { favGames } = res.data
-      let games = favGames.map(games => games.name)
+      let games = favGames.map(games => games.twitchID)
       this.setState({
         userGames: games
       })
     })
-  }
-
-  componentDidUpdate = () => {
-    // return axios.get('/api/games', config).then(res => {
-    //   const { favGames } = res.data
-    //   let games = favGames.map(games => games.name)
-    //   this.setState({
-    //     userGames: games
-    //   })
-    // })
   }
 
   handleMsg = () => {
@@ -44,6 +35,9 @@ export default class GamePageHeader extends Component {
       .then(res => {
         const { favGames } = res.data
         console.log(favGames)
+        this.setState({
+          userGames: favGames
+        })
       })
       .catch(err => console.log(err))
   }
@@ -53,7 +47,6 @@ export default class GamePageHeader extends Component {
   render() {
     const { game, views } = this.props
     const { showMsg, userGames } = this.state
-   
     return (
       <div>
         <>
@@ -67,14 +60,8 @@ export default class GamePageHeader extends Component {
                 <h1>{game.name}</h1>
                 <p>Total views: {views}</p>
               </div>
-
-              {userGames && userGames.includes(game.name) ? (
-                <button
-                  onClick={() => this.handleRemove(game)}
-                  className='zi-btn primary ghost '
-                >
-                  Remove
-                </button>
+              {userGames && userGames.includes(game.id) ? (
+                <button className='zi-btn primary ghost '>Remove</button>
               ) : (
                 <button
                   onClick={() => this.handleClick(game)}
